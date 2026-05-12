@@ -2,32 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>アブストラル 服薬チャート</title>
-<style>
-@media (orientation: portrait) {
-  #rotate-msg { display: flex !important; }
-  .app { display: none !important; }
-}
-@media (orientation: landscape) {
-  html { font-size: 14px; }
-  .app { max-width: 100% !important; padding: 0 0 20px !important; }
-  .header { padding: 10px 20px 8px !important; }
-  .header h1 { font-size: 20px !important; }
-  .summary { margin: 0 16px 10px !important; padding: 14px 20px !important; }
-  .sum-value { font-size: 36px !important; }
-  .week-section { margin: 0 16px 10px !important; }
-  .gantt-wrap { margin: 0 16px !important; }
-  .cell { height: 32px !important; border-radius: 4px !important; }
-  .date-lbl { font-size: 13px !important; padding-right: 8px !important; }
-  .hour-lbl { font-size: 11px !important; }
-  .gantt-inner { min-width: unset !important; width: 100% !important; }
-  .hour-header { grid-template-columns: 76px repeat(24, 1fr) !important; }
-  .gantt-row { grid-template-columns: 76px repeat(24, 1fr) !important; }
-  .popup { padding: 16px 24px 32px !important; }
-  .radio-opt label { padding: 14px 8px !important; font-size: 15px !important; }
-}
-</style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root {
@@ -79,30 +55,16 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
 .trend-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
 
 /* weekly spark */
-.week-section { margin: 0 12px 12px; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 12px 14px; }
-.week-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-.week-legends { display: flex; gap: 10px; }
-.week-trend { font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 3px; }
-.week-trend.up { color: var(--danger-text); }
-.week-trend.down { color: var(--green); }
-.week-trend.same { color: var(--text3); }
-.sparkline { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
-.spark-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; }
-.spark-bar { width: 100%; border-radius: 2px 2px 0 0; min-height: 2px; }
-.spark-bar.this { background: var(--blue); }
-.spark-bar.prev { background: var(--border2); }
-.spark-labels { display: flex; gap: 3px; margin-top: 3px; }
-.spark-lbl { flex: 1; font-size: 9px; color: var(--text3); text-align: center; }
 
 /* gantt */
 .gantt-wrap { margin: 0 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .gantt-inner { min-width: 380px; }
-.hour-header { display: grid; grid-template-columns: 76px repeat(24, 1fr); margin-bottom: 3px; }
+.hour-header { display: grid; grid-template-columns: 44px repeat(24, 1fr); margin-bottom: 3px; }
 .hour-lbl { font-size: 9px; color: var(--text3); text-align: center; padding-bottom: 2px; }
-.gantt-row { display: grid; grid-template-columns: 76px repeat(24, 1fr); margin-bottom: 3px; align-items: center; }
-.date-lbl { font-size: 10px; color: var(--text2); text-align: right; padding-right: 6px; white-space: nowrap; line-height: 1.2; }
+.gantt-row { display: grid; grid-template-columns: 44px repeat(24, 1fr); margin-bottom: 3px; align-items: center; }
+.date-lbl { font-size: 11px; color: var(--text2); text-align: right; padding-right: 6px; white-space: nowrap; line-height: 1.2; }
 .date-lbl.today { color: var(--text); font-weight: 600; }
-.cell { height: 24px; border-radius: 3px; border: 0.5px solid var(--border); background: var(--surface); cursor: pointer; position: relative; transition: opacity .1s; }
+.cell { height: 28px; border-radius: 3px; border: 0.5px solid var(--border); background: var(--surface); cursor: pointer; position: relative; transition: opacity .1s; }
 .cell:active { opacity: .65; }
 .cell.y1 { background: var(--amber); border-color: var(--amber-border); }
 .cell.y2 { background: var(--red); border-color: var(--red-border); }
@@ -127,11 +89,6 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
 </style>
 </head>
 <body>
-<div id="rotate-msg" style="display:none;position:fixed;inset:0;z-index:9999;background:#1a1a18;color:#fff;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:sans-serif;">
-  <div style="font-size:48px">&#8635;</div>
-  <div style="font-size:18px;font-weight:600">横画面にしてください</div>
-  <div style="font-size:13px;color:#a8a8a0">スマホを横向きにすると使いやすくなります</div>
-</div>
 <div class="app">
   <div class="header">
     <h1><i class="ti ti-pill"></i>アブストラル 服薬チャート</h1>
@@ -153,24 +110,7 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
     </div>
   </div>
 
-  <div class="week-section">
-    <div class="week-header">
-      <div class="week-legends">
-        <div class="leg"><div class="leg-dot" style="background:var(--blue)"></div>今週</div>
-        <div class="leg"><div class="leg-dot" style="background:var(--border2)"></div>先週</div>
-      </div>
-      <div class="week-trend" id="week-trend"></div>
-    </div>
-    <div class="sparkline" id="sparkline"></div>
-    <div class="spark-labels" id="spark-labels"></div>
-  </div>
-
-  <div class="gantt-wrap">
-    <div class="gantt-inner">
-      <div class="hour-header" id="hour-header"></div>
-      <div id="chart-rows"></div>
-    </div>
-  </div>
+  
 </div>
 
 <div class="popup-overlay" id="popup-overlay">
@@ -217,12 +157,7 @@ function getDateKey(offset) {
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 function getDayLabel(key) {
-  const parts = key.split('/');
-  const d = new Date();
-  d.setMonth(parseInt(parts[0])-1);
-  d.setDate(parseInt(parts[1]));
-  const dow = ['日','月','火','水','木','金','土'][d.getDay()];
-  return key + '(' + dow + ')';
+  return key;
 }
 function getDayOfWeek(offset) {
   const d = new Date();
@@ -237,7 +172,6 @@ function totalFor(key) {
 const todayKey = getToday();
 const yesterdayKey = getDateKey(-1);
 const thisWeekKeys = Array.from({length:7}, (_,i) => getDateKey(i-6));
-const lastWeekKeys = Array.from({length:7}, (_,i) => getDateKey(i-13));
 const nowHour = new Date().getHours();
 
 function updateSummary() {
@@ -256,32 +190,6 @@ function updateSummary() {
   else { tb.className='trend same'; tb.innerHTML=`<i class="ti ti-minus" style="font-size:14px"></i>±0錠`; }
   document.getElementById('today-sub').textContent = `${yesterdayKey}比（${yesterdayKey} ${yesterT}錠）`;
 
-  const wb = document.getElementById('week-trend');
-  if (wdiff > 0) { wb.className='week-trend up'; wb.innerHTML=`<i class="ti ti-trending-up" style="font-size:12px"></i>先週比 +${wdiff}錠`; }
-  else if (wdiff < 0) { wb.className='week-trend down'; wb.innerHTML=`<i class="ti ti-trending-down" style="font-size:12px"></i>先週比 ${wdiff}錠`; }
-  else { wb.className='week-trend same'; wb.innerHTML=`<i class="ti ti-minus" style="font-size:12px"></i>先週比 ±0錠`; }
-
-  renderSparkline();
-}
-
-function renderSparkline() {
-  const thisVals = thisWeekKeys.map(k=>totalFor(k));
-  const lastVals = lastWeekKeys.map(k=>totalFor(k));
-  const max = Math.max(...thisVals, ...lastVals, 1);
-  const spark = document.getElementById('sparkline');
-  const lbl = document.getElementById('spark-labels');
-  spark.innerHTML = ''; lbl.innerHTML = '';
-  thisWeekKeys.forEach((_,i) => {
-    const col = document.createElement('div'); col.className = 'spark-col';
-    const b1 = document.createElement('div'); b1.className = 'spark-bar this';
-    b1.style.height = Math.round((thisVals[i]/max)*40)+'px';
-    const b2 = document.createElement('div'); b2.className = 'spark-bar prev';
-    b2.style.height = Math.round((lastVals[i]/max)*40)+'px';
-    col.appendChild(b1); col.appendChild(b2); spark.appendChild(col);
-    const ll = document.createElement('div'); ll.className = 'spark-lbl';
-    ll.textContent = getDayOfWeek(i-6);
-    lbl.appendChild(ll);
-  });
 }
 
 const headerEl = document.getElementById('hour-header');
@@ -317,11 +225,6 @@ document.querySelectorAll('input[name=dose]').forEach(r => {
       else if (val===2) selectedCell.classList.add('y2');
     }
     updateSummary();
-
-// 横向き強制
-if (screen.orientation && screen.orientation.lock) {
-  screen.orientation.lock('landscape').catch(()=>{});
-}
     setTimeout(closePopup, 300);
   });
 });
