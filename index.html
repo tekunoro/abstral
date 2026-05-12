@@ -7,85 +7,63 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root {
-  --bg: #f5f4f0;
-  --surface: #ffffff;
-  --surface2: #f0efe9;
-  --border: rgba(0,0,0,0.1);
-  --border2: rgba(0,0,0,0.18);
-  --text: #1a1a18;
-  --text2: #6b6b65;
-  --text3: #a8a8a0;
-  --blue: #378ADD;
-  --amber: #EF9F27;
-  --amber-border: #BA7517;
-  --amber-bg: #FAEEDA;
-  --amber-text: #633806;
-  --red: #E24B4A;
-  --red-border: #A32D2D;
-  --red-bg: #FCEBEB;
-  --red-text: #791F1F;
-  --green: #0F6E56;
-  --danger-text: #A32D2D;
-  --radius: 8px;
-  --radius-lg: 12px;
+  --bg:#f5f4f0;--surface:#fff;--surface2:#f0efe9;
+  --border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);
+  --text:#1a1a18;--text2:#6b6b65;--text3:#a8a8a0;
+  --blue:#378ADD;--amber:#EF9F27;--amber-border:#BA7517;
+  --amber-bg:#FAEEDA;--amber-text:#633806;
+  --red:#E24B4A;--red-border:#A32D2D;--red-bg:#FCEBEB;--red-text:#791F1F;
+  --green:#0F6E56;--danger-text:#A32D2D;--radius:8px;--radius-lg:12px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; color: var(--text); min-height: 100vh; }
-.app { max-width: 480px; margin: 0 auto; padding: 0 0 40px; }
-
-/* header */
-.header { padding: 16px 16px 12px; display: flex; align-items: center; justify-content: space-between; }
-.header h1 { font-size: 17px; font-weight: 600; display: flex; align-items: center; gap: 6px; }
-.header h1 i { font-size: 18px; color: var(--amber); }
-.legend { display: flex; gap: 10px; }
-.leg { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text2); }
-.leg-dot { width: 12px; height: 12px; border-radius: 2px; }
-
-/* today summary */
-.summary { margin: 0 12px 12px; background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
-.sum-left { display: flex; align-items: baseline; gap: 8px; }
-.sum-label { font-size: 12px; color: var(--text2); }
-.sum-value { font-size: 30px; font-weight: 700; line-height: 1; }
-.sum-unit { font-size: 12px; color: var(--text3); }
-.sum-right { text-align: right; }
-.trend { display: flex; align-items: center; gap: 3px; font-size: 13px; font-weight: 600; justify-content: flex-end; }
-.trend.up { color: var(--danger-text); }
-.trend.down { color: var(--green); }
-.trend.same { color: var(--text3); }
-.trend-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
-
-/* weekly spark */
-
-/* gantt */
-.gantt-wrap { margin: 0 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.gantt-inner { min-width: 380px; }
-.hour-header { display: grid; grid-template-columns: 44px repeat(24, 1fr); margin-bottom: 3px; }
-.hour-lbl { font-size: 9px; color: var(--text3); text-align: center; padding-bottom: 2px; }
-.gantt-row { display: grid; grid-template-columns: 44px repeat(24, 1fr); margin-bottom: 3px; align-items: center; }
-.date-lbl { font-size: 11px; color: var(--text2); text-align: right; padding-right: 6px; white-space: nowrap; line-height: 1.2; }
-.date-lbl.today { color: var(--text); font-weight: 600; }
-.cell { height: 28px; border-radius: 3px; border: 0.5px solid var(--border); background: var(--surface); cursor: pointer; position: relative; transition: opacity .1s; }
-.cell:active { opacity: .65; }
-.cell.y1 { background: var(--amber); border-color: var(--amber-border); }
-.cell.y2 { background: var(--red); border-color: var(--red-border); }
-.cell.now-line::after { content: ''; position: absolute; right: -1px; top: 0; bottom: 0; width: 2px; background: var(--blue); z-index: 2; border-radius: 1px; }
-.cell.selected { outline: 2px solid var(--text); outline-offset: -1px; z-index: 3; }
-
-/* popup */
-.popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.25); z-index: 50; align-items: flex-end; justify-content: center; }
-.popup-overlay.show { display: flex; }
-.popup { background: var(--surface); border-radius: var(--radius-lg) var(--radius-lg) 0 0; padding: 20px 20px 36px; width: 100%; max-width: 480px; }
-.popup-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 2px; margin: 0 auto 16px; }
-.popup-time { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--text); }
-.radio-group { display: flex; gap: 10px; }
-.radio-opt { flex: 1; position: relative; }
-.radio-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
-.radio-opt label { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 4px; border-radius: var(--radius); border: 1px solid var(--border2); font-size: 13px; cursor: pointer; color: var(--text2); background: var(--surface2); transition: all .15s; white-space: nowrap; }
-.radio-opt input:checked + label { border-width: 2px; font-weight: 600; }
-.radio-opt.opt-none input:checked + label { background: var(--surface); border-color: var(--text); color: var(--text); }
-.radio-opt.opt-1 input:checked + label { background: var(--amber-bg); border-color: var(--amber-border); color: var(--amber-text); }
-.radio-opt.opt-2 input:checked + label { background: var(--red-bg); border-color: var(--red-border); color: var(--red-text); }
-.rdot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);font-family:'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;color:var(--text);min-height:100vh}
+.app{max-width:480px;margin:0 auto;padding:0 0 40px}
+.header{padding:14px 16px 10px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-size:17px;font-weight:600;display:flex;align-items:center;gap:6px}
+.header h1 i{font-size:18px;color:var(--amber)}
+.legend{display:flex;gap:10px}
+.leg{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text2)}
+.leg-dot{width:12px;height:12px;border-radius:2px}
+.summary{margin:0 12px 12px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.sum-left{display:flex;align-items:baseline;gap:8px}
+.sum-label{font-size:12px;color:var(--text2)}
+.sum-value{font-size:30px;font-weight:700;line-height:1}
+.sum-unit{font-size:12px;color:var(--text3)}
+.sum-right{text-align:right}
+.trend{display:flex;align-items:center;gap:3px;font-size:13px;font-weight:600;justify-content:flex-end}
+.trend.up{color:var(--danger-text)}.trend.down{color:var(--green)}.trend.same{color:var(--text3)}
+.trend-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.gantt-wrap{margin:0 12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.gantt-inner{min-width:560px}
+.hour-header{display:grid;grid-template-columns:52px repeat(24,1fr);margin-bottom:3px}
+.hour-lbl{font-size:9px;color:var(--text3);text-align:center;padding-bottom:2px}
+.gantt-row{display:grid;grid-template-columns:52px repeat(24,1fr);margin-bottom:3px;align-items:center}
+.date-lbl{display:flex;flex-direction:column;align-items:flex-end;padding-right:6px;white-space:nowrap}
+.date-lbl .d-day{font-size:15px;font-weight:500;color:var(--text);line-height:1.1}
+.date-lbl .d-dow{font-size:10px;color:var(--text3);line-height:1.2}
+.date-lbl.today .d-day{color:var(--blue)}
+.date-lbl.today .d-dow{color:var(--blue)}
+.cell{height:40px;border-radius:3px;border:0.5px solid var(--border);background:var(--surface);cursor:pointer;position:relative;transition:opacity .1s}
+.cell:active{opacity:.65}
+.cell.y1{background:var(--amber);border-color:var(--amber-border)}
+.cell.y2{background:var(--red);border-color:var(--red-border)}
+.cell.now-line::after{content:'';position:absolute;right:-1px;top:0;bottom:0;width:2px;background:var(--blue);z-index:2;border-radius:1px}
+.cell.selected{outline:2px solid var(--text);outline-offset:-1px;z-index:3}
+.scroll-hint{font-size:10px;color:var(--text3);text-align:center;padding:5px 0 0}
+.popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.25);z-index:50;align-items:flex-end;justify-content:center}
+.popup-overlay.show{display:flex}
+.popup{background:var(--surface);border-radius:var(--radius-lg) var(--radius-lg) 0 0;padding:20px 20px 48px;width:100%;max-width:480px}
+.popup-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 16px}
+.popup-time{font-size:14px;font-weight:600;margin-bottom:16px;color:var(--text)}
+.radio-group{display:flex;gap:10px}
+.radio-opt{flex:1;position:relative}
+.radio-opt input{position:absolute;opacity:0;width:0;height:0}
+.radio-opt label{display:flex;align-items:center;justify-content:center;gap:6px;padding:14px 4px;border-radius:var(--radius);border:1px solid var(--border2);font-size:14px;cursor:pointer;color:var(--text2);background:var(--surface2);transition:all .15s;white-space:nowrap}
+.radio-opt input:checked+label{border-width:2px;font-weight:600}
+.radio-opt.opt-none input:checked+label{background:var(--surface);border-color:var(--text);color:var(--text)}
+.radio-opt.opt-1 input:checked+label{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber-text)}
+.radio-opt.opt-2 input:checked+label{background:var(--red-bg);border-color:var(--red-border);color:var(--red-text)}
+.rdot{width:14px;height:14px;border-radius:2px;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -97,7 +75,6 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
       <div class="leg"><div class="leg-dot" style="background:var(--red);border:1px solid var(--red-border)"></div>2錠</div>
     </div>
   </div>
-
   <div class="summary">
     <div class="sum-left">
       <span class="sum-label">今日の合計</span>
@@ -109,18 +86,22 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
       <div class="trend-sub" id="today-sub"></div>
     </div>
   </div>
-
-  
+  <div class="gantt-wrap">
+    <div class="gantt-inner">
+      <div class="hour-header" id="hour-header"></div>
+      <div id="chart-rows"></div>
+    </div>
+  </div>
+  <div class="scroll-hint">← 横スクロールで全時間帯を確認</div>
 </div>
-
 <div class="popup-overlay" id="popup-overlay">
-  <div class="popup" id="popup">
+  <div class="popup">
     <div class="popup-handle"></div>
     <div class="popup-time" id="popup-time"></div>
     <div class="radio-group">
       <div class="radio-opt opt-none">
         <input type="radio" name="dose" id="r0" value="0">
-        <label for="r0"><i class="ti ti-x" style="font-size:14px"></i>記録なし</label>
+        <label for="r0"><i class="ti ti-x" style="font-size:16px"></i>記録なし</label>
       </div>
       <div class="radio-opt opt-1">
         <input type="radio" name="dose" id="r1" value="1">
@@ -133,133 +114,75 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
     </div>
   </div>
 </div>
-
 <script>
-const HOURS = [24,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-const STORAGE_KEY = 'abstral_data_v1';
-
-function loadData() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+const HOURS=[24,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+const STORAGE_KEY='abstral_data_v1';
+function loadData(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{return{}}}
+function saveData(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}catch{}}
+const data=loadData();
+function getDateKey(offset){const d=new Date();d.setDate(d.getDate()+offset);return`${d.getMonth()+1}/${d.getDate()}`}
+function getDayParts(key){const p=key.split('/');const d=new Date();d.setMonth(parseInt(p[0])-1);d.setDate(parseInt(p[1]));return{day:parseInt(p[1]),dow:['日','月','火','水','木','金','土'][d.getDay()]}}
+function totalFor(k){return Object.values(data[k]||{}).reduce((s,v)=>s+v,0)}
+const todayKey=getDateKey(0);
+const yesterdayKey=getDateKey(-1);
+const thisWeekKeys=Array.from({length:7},(_,i)=>getDateKey(i-6));
+const nowHour=new Date().getHours();
+function updateSummary(){
+  const todayT=totalFor(todayKey),yesterT=totalFor(yesterdayKey),diff=todayT-yesterT;
+  document.getElementById('sum-today').textContent=todayT;
+  const tb=document.getElementById('today-trend');
+  if(diff>0){tb.className='trend up';tb.innerHTML=`<i class="ti ti-trending-up" style="font-size:14px"></i>+${diff}錠`}
+  else if(diff<0){tb.className='trend down';tb.innerHTML=`<i class="ti ti-trending-down" style="font-size:14px"></i>${diff}錠`}
+  else{tb.className='trend same';tb.innerHTML=`<i class="ti ti-minus" style="font-size:14px"></i>±0錠`}
+  const yp=getDayParts(yesterdayKey);
+  document.getElementById('today-sub').textContent=`${yp.day}日(${yp.dow})比（${yesterT}錠）`;
 }
-function saveData() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
-}
-
-const data = loadData();
-
-function getToday() {
-  const d = new Date();
-  return `${d.getMonth()+1}/${d.getDate()}`;
-}
-function getDateKey(offset) {
-  const d = new Date();
-  d.setDate(d.getDate() + offset);
-  return `${d.getMonth()+1}/${d.getDate()}`;
-}
-function getDayLabel(key) {
-  return key;
-}
-function getDayOfWeek(offset) {
-  const d = new Date();
-  d.setDate(d.getDate() + offset);
-  return ['日','月','火','水','木','金','土'][d.getDay()];
-}
-
-function totalFor(key) {
-  return Object.values(data[key] || {}).reduce((s,v)=>s+v, 0);
-}
-
-const todayKey = getToday();
-const yesterdayKey = getDateKey(-1);
-const thisWeekKeys = Array.from({length:7}, (_,i) => getDateKey(i-6));
-const nowHour = new Date().getHours();
-
-function updateSummary() {
-  const todayT = totalFor(todayKey);
-  const yesterT = totalFor(yesterdayKey);
-  const thisT = thisWeekKeys.reduce((s,k)=>s+totalFor(k), 0);
-  const lastT = lastWeekKeys.reduce((s,k)=>s+totalFor(k), 0);
-  const diff = todayT - yesterT;
-  const wdiff = thisT - lastT;
-
-  document.getElementById('sum-today').textContent = todayT;
-
-  const tb = document.getElementById('today-trend');
-  if (diff > 0) { tb.className='trend up'; tb.innerHTML=`<i class="ti ti-trending-up" style="font-size:14px"></i>+${diff}錠`; }
-  else if (diff < 0) { tb.className='trend down'; tb.innerHTML=`<i class="ti ti-trending-down" style="font-size:14px"></i>${diff}錠`; }
-  else { tb.className='trend same'; tb.innerHTML=`<i class="ti ti-minus" style="font-size:14px"></i>±0錠`; }
-  document.getElementById('today-sub').textContent = `${yesterdayKey}比（${yesterdayKey} ${yesterT}錠）`;
-
-}
-
-const headerEl = document.getElementById('hour-header');
+const headerEl=document.getElementById('hour-header');
 headerEl.appendChild(document.createElement('div'));
-HOURS.forEach((h,i) => {
-  const d = document.createElement('div'); d.className = 'hour-lbl';
-  d.textContent = (i%2===0) ? String(h) : '';
-  headerEl.appendChild(d);
-});
-
-let selectedCell = null, selectedDay = null, selectedHour = null;
-const overlay = document.getElementById('popup-overlay');
-
-overlay.addEventListener('click', (e) => {
-  if (e.target === overlay) closePopup();
-});
-
-function closePopup() {
-  overlay.classList.remove('show');
-  if (selectedCell) { selectedCell.classList.remove('selected'); selectedCell = null; }
-}
-
-document.querySelectorAll('input[name=dose]').forEach(r => {
-  r.addEventListener('change', () => {
-    const val = parseInt(r.value);
-    if (!data[selectedDay]) data[selectedDay] = {};
-    if (val === 0) delete data[selectedDay][selectedHour];
-    else data[selectedDay][selectedHour] = val;
+HOURS.forEach((h,i)=>{const d=document.createElement('div');d.className='hour-lbl';d.textContent=(i%2===0)?String(h):'';headerEl.appendChild(d)});
+let selectedCell=null,selectedDay=null,selectedHour=null;
+const overlay=document.getElementById('popup-overlay');
+overlay.addEventListener('click',e=>{if(e.target===overlay)closePopup()});
+function closePopup(){overlay.classList.remove('show');if(selectedCell){selectedCell.classList.remove('selected');selectedCell=null}}
+document.querySelectorAll('input[name=dose]').forEach(r=>{
+  r.addEventListener('change',()=>{
+    const val=parseInt(r.value);
+    if(!data[selectedDay])data[selectedDay]={};
+    if(val===0)delete data[selectedDay][selectedHour];else data[selectedDay][selectedHour]=val;
     saveData();
-    if (selectedCell) {
-      selectedCell.classList.remove('y1','y2');
-      if (val===1) selectedCell.classList.add('y1');
-      else if (val===2) selectedCell.classList.add('y2');
-    }
+    if(selectedCell){selectedCell.classList.remove('y1','y2');if(val===1)selectedCell.classList.add('y1');else if(val===2)selectedCell.classList.add('y2')}
     updateSummary();
-    setTimeout(closePopup, 300);
+    setTimeout(closePopup,300);
   });
 });
-
-function openPopup(cell, day, hour) {
-  if (selectedCell) selectedCell.classList.remove('selected');
-  selectedCell = cell; selectedDay = day; selectedHour = hour;
+function openPopup(cell,day,hour){
+  if(selectedCell)selectedCell.classList.remove('selected');
+  selectedCell=cell;selectedDay=day;selectedHour=hour;
   cell.classList.add('selected');
-  const dl = getDayLabel(day);
-  const dh = String(hour).padStart(2,'0');
-  const nh = hour===23 ? '24' : String(hour+1).padStart(2,'0');
-  document.getElementById('popup-time').textContent = `${dl}  ${dh}:00 〜 ${nh}:00`;
-  document.getElementById('r'+((data[day]||{})[hour]||0)).checked = true;
+  const p=getDayParts(day);
+  const dh=String(hour).padStart(2,'0'),nh=hour===23?'24':String(hour+1).padStart(2,'0');
+  document.getElementById('popup-time').textContent=`${p.day}日(${p.dow})  ${dh}:00 〜 ${nh}:00`;
+  document.getElementById('r'+((data[day]||{})[hour]||0)).checked=true;
   overlay.classList.add('show');
 }
-
-const container = document.getElementById('chart-rows');
-thisWeekKeys.slice().reverse().forEach(day => {
-  const row = document.createElement('div'); row.className = 'gantt-row';
-  const lbl = document.createElement('div');
-  lbl.className = 'date-lbl' + (day===todayKey?' today':'');
-  lbl.textContent = getDayLabel(day);
+const container=document.getElementById('chart-rows');
+thisWeekKeys.slice().reverse().forEach(day=>{
+  const row=document.createElement('div');row.className='gantt-row';
+  const lbl=document.createElement('div');
+  lbl.className='date-lbl'+(day===todayKey?' today':'');
+  const p=getDayParts(day);
+  lbl.innerHTML=`<span class="d-day">${p.day}</span><span class="d-dow">${p.dow}</span>`;
   row.appendChild(lbl);
-  HOURS.forEach(h => {
-    const cell = document.createElement('div'); cell.className = 'cell';
-    const dose = (data[day]||{})[h];
-    if (dose===1) cell.classList.add('y1');
-    else if (dose===2) cell.classList.add('y2');
-    if (day===todayKey && h===nowHour) cell.classList.add('now-line');
-    cell.addEventListener('click', ()=>openPopup(cell,day,h));
+  HOURS.forEach(h=>{
+    const cell=document.createElement('div');cell.className='cell';
+    const dose=(data[day]||{})[h];
+    if(dose===1)cell.classList.add('y1');else if(dose===2)cell.classList.add('y2');
+    if(day===todayKey&&h===nowHour)cell.classList.add('now-line');
+    cell.addEventListener('click',()=>openPopup(cell,day,h));
     row.appendChild(cell);
   });
   container.appendChild(row);
 });
-
 updateSummary();
 </script>
 </body>
