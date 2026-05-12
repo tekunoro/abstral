@@ -2,13 +2,8 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes">
 <title>アブストラル 服薬チャート</title>
-<style>
-@media (orientation: portrait) {
-  #rotate-msg { display: flex !important; }
-}
-</style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
 :root {
@@ -78,10 +73,10 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
 /* gantt */
 .gantt-wrap { margin: 0 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .gantt-inner { min-width: 380px; }
-.hour-header { display: grid; grid-template-columns: 62px repeat(24, 1fr); margin-bottom: 3px; }
+.hour-header { display: grid; grid-template-columns: 44px repeat(24, 1fr); margin-bottom: 3px; }
 .hour-lbl { font-size: 9px; color: var(--text3); text-align: center; padding-bottom: 2px; }
-.gantt-row { display: grid; grid-template-columns: 62px repeat(24, 1fr); margin-bottom: 3px; align-items: center; }
-.date-lbl { font-size: 10px; color: var(--text2); text-align: right; padding-right: 6px; white-space: nowrap; line-height: 1.2; }
+.gantt-row { display: grid; grid-template-columns: 44px repeat(24, 1fr); margin-bottom: 3px; align-items: center; }
+.date-lbl { font-size: 11px; color: var(--text2); text-align: right; padding-right: 6px; white-space: nowrap; line-height: 1.2; }
 .date-lbl.today { color: var(--text); font-weight: 600; }
 .cell { height: 24px; border-radius: 3px; border: 0.5px solid var(--border); background: var(--surface); cursor: pointer; position: relative; transition: opacity .1s; }
 .cell:active { opacity: .65; }
@@ -108,7 +103,6 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
 </style>
 </head>
 <body>
-<div id="rotate-msg" style="display:none;position:fixed;inset:0;z-index:9999;background:#1a1a18;color:#fff;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:sans-serif;"><div style="font-size:48px"><body>#8635;</div><div style="font-size:16px;font-weight:600">横画面にしてください</div><div style="font-size:12px;color:#a8a8a0">スマホを横向きにすると入力しやすくなります</div></div>
 <div class="app">
   <div class="header">
     <h1><i class="ti ti-pill"></i>アブストラル 服薬チャート</h1>
@@ -172,6 +166,11 @@ html, body { background: var(--bg); font-family: 'Hiragino Sans', 'Hiragino Kaku
 </div>
 
 <script>
+// 横向き強制
+if (screen.orientation && screen.orientation.lock) {
+  screen.orientation.lock('landscape').catch(()=>{});
+}
+
 const HOURS = [24,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 const STORAGE_KEY = 'abstral_data_v1';
 
@@ -194,11 +193,7 @@ function getDateKey(offset) {
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 function getDayLabel(key) {
-  const parts = key.split('/');
-  const d = new Date();
-  d.setFullYear(d.getFullYear(), parseInt(parts[0])-1, parseInt(parts[1]));
-  const dow = ['日','月','火','水','木','金','土'][d.getDay()];
-  return key + '(' + dow + ')';
+  return key;
 }
 function getDayOfWeek(offset) {
   const d = new Date();
