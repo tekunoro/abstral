@@ -64,6 +64,32 @@ html,body{background:var(--bg);font-family:'Hiragino Sans','Hiragino Kaku Gothic
 .radio-opt.opt-1 input:checked+label{background:var(--amber-bg);border-color:var(--amber-border);color:var(--amber-text)}
 .radio-opt.opt-2 input:checked+label{background:var(--red-bg);border-color:var(--red-border);color:var(--red-text)}
 .rdot{width:14px;height:14px;border-radius:2px;flex-shrink:0}
+
+@media (orientation: landscape) {
+  .app { max-width: 100%; padding: 0 0 8px; }
+  .header { padding: 6px 12px 4px; }
+  .header h1 { font-size: 13px; }
+  .legend .leg { font-size: 9px; }
+  .leg-dot { width: 9px; height: 9px; }
+  .summary { margin: 0 8px 6px; padding: 6px 12px; }
+  .sum-label { font-size: 10px; }
+  .sum-value { font-size: 20px; }
+  .sum-unit { font-size: 10px; }
+  .trend { font-size: 11px; }
+  .trend-sub { font-size: 9px; }
+  .gantt-wrap { margin: 0 8px; }
+  .gantt-inner { min-width: unset; width: 100%; }
+  .hour-header { grid-template-columns: 36px repeat(24, 1fr); }
+  .hour-lbl { font-size: 8px; }
+  .gantt-row { grid-template-columns: 36px repeat(24, 1fr); margin-bottom: 2px; }
+  .date-lbl .d-day { font-size: 11px; }
+  .date-lbl .d-dow { font-size: 8px; }
+  .cell { height: 26px; }
+  .scroll-hint { display: none; }
+  .popup { padding: 12px 16px 24px; }
+  .popup-time { font-size: 12px; margin-bottom: 10px; }
+  .radio-opt label { padding: 10px 4px; font-size: 12px; }
+}
 </style>
 </head>
 <body>
