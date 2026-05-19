@@ -164,11 +164,14 @@ function loadData(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}
 function saveData(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}catch{}}
 const data=loadData();
 
-function getDateKey(offset){const d=new Date();d.setDate(d.getDate()+offset);return`${d.getMonth()+1}/${d.getDate()}`}
+function getDateKey(offset){
+  const d=new Date();d.setDate(d.getDate()+offset);
+  return`${d.getMonth()+1}/${d.getDate()}`;
+}
 function getDayParts(key){
   const p=key.split('/');
   const d=new Date();d.setMonth(parseInt(p[0])-1);d.setDate(parseInt(p[1]));
-  return{day:parseInt(p[1]),dow:['日','月','火','水','木','金','土'][d.getDay()]}
+  return{day:parseInt(p[1]),dow:['日','月','火','水','木','金','土'][d.getDay()]};
 }
 function totalFor(k){return Object.values(data[k]||{}).reduce((s,v)=>s+v,0)}
 
@@ -176,6 +179,7 @@ const todayKey=getDateKey(0);
 const yesterdayKey=getDateKey(-1);
 const nowHour=new Date().getHours();
 
+// 表示月
 let viewYear=new Date().getFullYear();
 let viewMonth=new Date().getMonth()+1;
 
@@ -196,7 +200,10 @@ function renderChart(){
   const now=new Date();
   const curYear=now.getFullYear(),curMonth=now.getMonth()+1;
   const days=getDaysInMonth(viewYear,viewMonth);
-  const keys=Array.from({length:days},(_,i)=>`${viewMonth}/${i+1}`);
+  // キー形式は 月/日（例：5/12）で統一
+  // 当月は今日まで、過去月は全日表示
+  const lastDay=(viewYear===curYear&&viewMonth===curMonth)?now.getDate():days;
+  const keys=Array.from({length:lastDay},(_,i)=>`${viewMonth}/${i+1}`);
 
   document.getElementById('month-title').textContent=`${viewYear}年${viewMonth}月`;
   const isCurrentOrFuture=(viewYear>curYear||(viewYear===curYear&&viewMonth>=curMonth));
@@ -205,7 +212,10 @@ function renderChart(){
   const headerEl=document.getElementById('hour-header');
   headerEl.innerHTML='';
   headerEl.appendChild(document.createElement('div'));
-  HOURS.forEach((h,i)=>{const d=document.createElement('div');d.className='hour-lbl';d.textContent=(i%2===0)?String(h):'';headerEl.appendChild(d)});
+  HOURS.forEach((h,i)=>{
+    const d=document.createElement('div');d.className='hour-lbl';
+    d.textContent=(i%2===0)?String(h):'';headerEl.appendChild(d);
+  });
 
   const container=document.getElementById('chart-rows');
   container.innerHTML='';
@@ -244,7 +254,10 @@ document.getElementById('next-month').addEventListener('click',()=>{
 let selectedCell=null,selectedDay=null,selectedHour=null;
 const overlay=document.getElementById('popup-overlay');
 overlay.addEventListener('click',e=>{if(e.target===overlay)closePopup()});
-function closePopup(){overlay.classList.remove('show');if(selectedCell){selectedCell.classList.remove('selected');selectedCell=null}}
+function closePopup(){
+  overlay.classList.remove('show');
+  if(selectedCell){selectedCell.classList.remove('selected');selectedCell=null}
+}
 document.querySelectorAll('input[name=dose]').forEach(r=>{
   r.addEventListener('change',()=>{
     const val=parseInt(r.value);
