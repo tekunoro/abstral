@@ -91,6 +91,16 @@ html,body{background:var(--bg);font-family:'Hiragino Sans','Hiragino Kaku Gothic
   .popup-time { font-size: 12px; margin-bottom: 10px; }
   .radio-opt label { padding: 10px 4px; font-size: 12px; }
 }
+
+.month-nav{display:flex;align-items:center;justify-content:space-between;padding:6px 12px 0;margin-bottom:4px}
+.month-nav-title{font-size:14px;font-weight:600;color:var(--text)}
+.month-nav-btn{background:none;border:0.5px solid var(--border2);border-radius:var(--radius);padding:4px 12px;font-size:13px;cursor:pointer;color:var(--text2)}
+.month-nav-btn:active{opacity:.7}
+@media (orientation:landscape){
+  .month-nav{padding:3px 8px 0;margin-bottom:2px}
+  .month-nav-title{font-size:12px}
+  .month-nav-btn{font-size:11px;padding:3px 8px}
+}
 </style>
 <link rel="icon" type="image/png" href="data:image/png;base64,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">
 </head>
@@ -113,6 +123,11 @@ html,body{background:var(--bg);font-family:'Hiragino Sans','Hiragino Kaku Gothic
       <div class="trend" id="today-trend"></div>
       <div class="trend-sub" id="today-sub"></div>
     </div>
+  </div>
+  <div class="month-nav">
+    <button class="month-nav-btn" id="prev-month">&#8249; 前月</button>
+    <div class="month-nav-title" id="month-title"></div>
+    <button class="month-nav-btn" id="next-month">次月 &#8250;</button>
   </div>
   <div class="gantt-wrap">
     <div class="gantt-inner">
@@ -148,13 +163,24 @@ const STORAGE_KEY='abstral_data_v1';
 function loadData(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')}catch{return{}}}
 function saveData(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data))}catch{}}
 const data=loadData();
+
 function getDateKey(offset){const d=new Date();d.setDate(d.getDate()+offset);return`${d.getMonth()+1}/${d.getDate()}`}
-function getDayParts(key){const p=key.split('/');const d=new Date();d.setMonth(parseInt(p[0])-1);d.setDate(parseInt(p[1]));return{day:parseInt(p[1]),dow:['日','月','火','水','木','金','土'][d.getDay()]}}
+function getDayParts(key){
+  const p=key.split('/');
+  const d=new Date();d.setMonth(parseInt(p[0])-1);d.setDate(parseInt(p[1]));
+  return{day:parseInt(p[1]),dow:['日','月','火','水','木','金','土'][d.getDay()]}
+}
 function totalFor(k){return Object.values(data[k]||{}).reduce((s,v)=>s+v,0)}
+
 const todayKey=getDateKey(0);
 const yesterdayKey=getDateKey(-1);
-const thisWeekKeys=Array.from({length:30},(_,i)=>getDateKey(i-29));
 const nowHour=new Date().getHours();
+
+let viewYear=new Date().getFullYear();
+let viewMonth=new Date().getMonth()+1;
+
+function getDaysInMonth(y,m){return new Date(y,m,0).getDate()}
+
 function updateSummary(){
   const todayT=totalFor(todayKey),yesterT=totalFor(yesterdayKey),diff=todayT-yesterT;
   document.getElementById('sum-today').textContent=todayT;
@@ -165,9 +191,56 @@ function updateSummary(){
   const yp=getDayParts(yesterdayKey);
   document.getElementById('today-sub').textContent=`${yp.day}日(${yp.dow})比（${yesterT}錠）`;
 }
-const headerEl=document.getElementById('hour-header');
-headerEl.appendChild(document.createElement('div'));
-HOURS.forEach((h,i)=>{const d=document.createElement('div');d.className='hour-lbl';d.textContent=(i%2===0)?String(h):'';headerEl.appendChild(d)});
+
+function renderChart(){
+  const now=new Date();
+  const curYear=now.getFullYear(),curMonth=now.getMonth()+1;
+  const days=getDaysInMonth(viewYear,viewMonth);
+  const keys=Array.from({length:days},(_,i)=>`${viewMonth}/${i+1}`);
+
+  document.getElementById('month-title').textContent=`${viewYear}年${viewMonth}月`;
+  const isCurrentOrFuture=(viewYear>curYear||(viewYear===curYear&&viewMonth>=curMonth));
+  document.getElementById('next-month').style.visibility=isCurrentOrFuture?'hidden':'visible';
+
+  const headerEl=document.getElementById('hour-header');
+  headerEl.innerHTML='';
+  headerEl.appendChild(document.createElement('div'));
+  HOURS.forEach((h,i)=>{const d=document.createElement('div');d.className='hour-lbl';d.textContent=(i%2===0)?String(h):'';headerEl.appendChild(d)});
+
+  const container=document.getElementById('chart-rows');
+  container.innerHTML='';
+  keys.slice().reverse().forEach(day=>{
+    const row=document.createElement('div');row.className='gantt-row';
+    const lbl=document.createElement('div');
+    const isTodayRow=(day===todayKey);
+    lbl.className='date-lbl'+(isTodayRow?' today':'');
+    const p=getDayParts(day);
+    lbl.innerHTML=`<span class="d-day">${p.day}</span><span class="d-dow">${p.dow}</span>`;
+    row.appendChild(lbl);
+    HOURS.forEach(h=>{
+      const cell=document.createElement('div');cell.className='cell';
+      const dose=(data[day]||{})[h];
+      if(dose===1)cell.classList.add('y1');else if(dose===2)cell.classList.add('y2');
+      if(isTodayRow&&h===nowHour)cell.classList.add('now-line');
+      cell.addEventListener('click',()=>openPopup(cell,day,h));
+      row.appendChild(cell);
+    });
+    container.appendChild(row);
+  });
+}
+
+document.getElementById('prev-month').addEventListener('click',()=>{
+  viewMonth--;if(viewMonth<1){viewMonth=12;viewYear--;}
+  renderChart();
+});
+document.getElementById('next-month').addEventListener('click',()=>{
+  const now=new Date();
+  if(viewYear<now.getFullYear()||(viewYear===now.getFullYear()&&viewMonth<now.getMonth()+1)){
+    viewMonth++;if(viewMonth>12){viewMonth=1;viewYear++;}
+    renderChart();
+  }
+});
+
 let selectedCell=null,selectedDay=null,selectedHour=null;
 const overlay=document.getElementById('popup-overlay');
 overlay.addEventListener('click',e=>{if(e.target===overlay)closePopup()});
@@ -193,25 +266,8 @@ function openPopup(cell,day,hour){
   document.getElementById('r'+((data[day]||{})[hour]||0)).checked=true;
   overlay.classList.add('show');
 }
-const container=document.getElementById('chart-rows');
-thisWeekKeys.slice().reverse().forEach(day=>{
-  const row=document.createElement('div');row.className='gantt-row';
-  const lbl=document.createElement('div');
-  lbl.className='date-lbl'+(day===todayKey?' today':'');
-  const p=getDayParts(day);
-  lbl.innerHTML=`<span class="d-day">${p.day}</span><span class="d-dow">${p.dow}</span>`;
-  row.appendChild(lbl);
-  HOURS.forEach(h=>{
-    const cell=document.createElement('div');cell.className='cell';
-    const dose=(data[day]||{})[h];
-    if(dose===1)cell.classList.add('y1');else if(dose===2)cell.classList.add('y2');
-    if(day===todayKey&&h===nowHour)cell.classList.add('now-line');
-    cell.addEventListener('click',()=>openPopup(cell,day,h));
-    row.appendChild(cell);
-  });
-  container.appendChild(row);
-});
 updateSummary();
+renderChart();
 </script>
 </body>
 </html>
